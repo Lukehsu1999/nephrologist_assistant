@@ -35,6 +35,6 @@ public class Patient {
 
     // Other methods
     public String printPatient(){
-        return "Name: " + name + "\nAge: " + age + "\nWeight: " + weight;
+        return "Patient Info:\n" + "Name: " + name + "\nAge: " + age + "\nWeight: " + weight;
     }
 }

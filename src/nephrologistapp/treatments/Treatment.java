@@ -3,7 +3,7 @@ package nephrologistapp.treatments;
 import nephrologistapp.patients.Patient;
 
 public class Treatment {
-    private String treatmentName;
+    private final String treatmentName;
 
     public Treatment(String treatmentName) {
         this.treatmentName = treatmentName;
@@ -13,10 +13,6 @@ public class Treatment {
     // Getters and setters
     public String getTreatmentName() {  
         return treatmentName;
-    }
-
-    public void setTreatmentName(String treatmentName) {
-        this.treatmentName = treatmentName;
     }
 
     // Other methods

@@ -26,3 +26,7 @@ Run
 ```
 java -cp src nephrologistapp.App
 ```
+Remove all .class files
+```
+find . -name "*.class" -delete
+```

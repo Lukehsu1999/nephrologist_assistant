@@ -7,7 +7,7 @@ import nephrologistapp.treatments.PrednisoneTreatment;
 
 public class App {
     public static void main(String[] args) throws Exception {
-        Patient patient = new Patient("John Doe", 25, 75.5);
+        Patient patient = new Patient("John Doe", 25, 50.0);
         Treatment treatment = new PrednisoneTreatment();
         
         

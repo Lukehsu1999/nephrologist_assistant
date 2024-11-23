@@ -38,7 +38,7 @@ public class PrednisoneTreatment extends Treatment{
     }
 
     // Store dosages in a map
-    //private Map<DoseType, Map<String, Map<WeightGroup, Double>>> dosageTable;
+    private Map<DoseType, Map<String, Map<WeightGroup, Double>>> dosageTable;
 
     // Constructor
     public PrednisoneTreatment() {

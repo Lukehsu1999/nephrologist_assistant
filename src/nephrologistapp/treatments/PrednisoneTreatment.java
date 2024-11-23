@@ -21,6 +21,16 @@ public class PrednisoneTreatment extends Treatment{
         }
     }
 
+    private WeightGroup getWeightGroup(double weight) {
+        if (weight < 50) {
+            return WeightGroup.UNDER_50;
+        } else if (weight < 75) {
+            return WeightGroup.MEDIUM;
+        } else {
+            return WeightGroup.OVER_75;
+        }
+    }
+
     // Enum for dose types
     public enum DoseType {
         STANDARD,
@@ -28,15 +38,15 @@ public class PrednisoneTreatment extends Treatment{
     }
 
     // Store dosages in a map
-    private Map<DoseType, Map<String, Map<WeightGroup, Double>>> dosageTable;
+    //private Map<DoseType, Map<String, Map<WeightGroup, Double>>> dosageTable;
 
     // Constructor
     public PrednisoneTreatment() {
         super("Prednisone"); 
-        initializeDosageTable();
+        //initializeDosageTable();
     }
 
-    private void initializeDosageTable() {
+    /*rivate void initializeDosageTable() {
         // Initialize standard doses
         Map<String, Map<WeightGroup, Double>> standardDoses = new HashMap<>();
         standardDoses.put("1", createWeightDoseMap(50.0, 60.0, 75.0));
@@ -58,13 +68,16 @@ public class PrednisoneTreatment extends Treatment{
         return dosageTable.get(doseType)
                          .getOrDefault(week, Collections.emptyMap())
                          .getOrDefault(weightGroup, 0.0);
-    }
+    }*/
 
 
     
     @Override
     public String treatPatient(Patient patient) {
-        return "";
+        double patient_weight = patient.getWeight();
+        WeightGroup weightGroup = getWeightGroup(patient_weight);
+
+        return "this patient belongs to " + weightGroup;
     }
     
 }

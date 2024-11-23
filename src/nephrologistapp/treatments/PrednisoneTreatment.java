@@ -37,8 +37,93 @@ public class PrednisoneTreatment extends Treatment{
         REDUCED
     }
 
-    // Store dosages in a map
-    private Map<DoseType, Map<String, Map<WeightGroup, Double>>> dosageTable;
+    // Class attribute: static and final
+    // DoseType -> Week -> WeightGroup -> Dose
+    private static final Map<DoseType, Map<String, Map<WeightGroup, Double>>> dosageTable;
+
+
+    // Static initializer block to populate the dosageTable
+    static {
+        dosageTable = new HashMap<>();
+        // Populate the dosageTable here
+        dosageTable.put(DoseType.STANDARD, new HashMap<>());
+        dosageTable.put(DoseType.REDUCED, new HashMap<>());
+        // populate standard dosageTable
+        dosageTable.get(DoseType.STANDARD).put("1", new EnumMap<>(WeightGroup.class));
+        dosageTable.get(DoseType.STANDARD).get("1").put(WeightGroup.UNDER_50, 50.0);
+        dosageTable.get(DoseType.STANDARD).get("1").put(WeightGroup.MEDIUM, 60.0);
+        dosageTable.get(DoseType.STANDARD).get("1").put(WeightGroup.OVER_75, 75.0);
+
+        dosageTable.get(DoseType.STANDARD).put("2", new EnumMap<>(WeightGroup.class));
+        dosageTable.get(DoseType.STANDARD).get("2").put(WeightGroup.UNDER_50, 50.0);
+        dosageTable.get(DoseType.STANDARD).get("2").put(WeightGroup.MEDIUM, 60.0);
+        dosageTable.get(DoseType.STANDARD).get("2").put(WeightGroup.OVER_75, 75.0);
+
+        dosageTable.get(DoseType.STANDARD).put("3-4", new EnumMap<>(WeightGroup.class));
+        dosageTable.get(DoseType.STANDARD).get("3-4").put(WeightGroup.UNDER_50, 40.0);
+        dosageTable.get(DoseType.STANDARD).get("3-4").put(WeightGroup.MEDIUM, 50.0);
+        dosageTable.get(DoseType.STANDARD).get("3-4").put(WeightGroup.OVER_75, 60.0);
+
+        dosageTable.get(DoseType.STANDARD).put("5-6", new EnumMap<>(WeightGroup.class));
+        dosageTable.get(DoseType.STANDARD).get("5-6").put(WeightGroup.UNDER_50,30.0);
+        dosageTable.get(DoseType.STANDARD).get("5-6").put(WeightGroup.MEDIUM,40.0);
+        dosageTable.get(DoseType.STANDARD).get("5-6").put(WeightGroup.OVER_75, 50.0);
+
+        dosageTable.get(DoseType.STANDARD).put("7-8", new EnumMap<>(WeightGroup.class));
+        dosageTable.get(DoseType.STANDARD).get("7-8").put(WeightGroup.UNDER_50,25.0);
+        dosageTable.get(DoseType.STANDARD).get("7-8").put(WeightGroup.MEDIUM,30.0);
+        dosageTable.get(DoseType.STANDARD).get("7-8").put(WeightGroup.OVER_75, 40.0);
+
+        dosageTable.get(DoseType.STANDARD).put("9-10", new EnumMap<>(WeightGroup.class));
+        dosageTable.get(DoseType.STANDARD).get("9-10").put(WeightGroup.UNDER_50,20.0);
+        dosageTable.get(DoseType.STANDARD).get("9-10").put(WeightGroup.MEDIUM,25.0);
+        dosageTable.get(DoseType.STANDARD).get("9-10").put(WeightGroup.OVER_75, 30.0);
+
+        dosageTable.get(DoseType.STANDARD).put("11-12", new EnumMap<>(WeightGroup.class));
+        dosageTable.get(DoseType.STANDARD).get("11-12").put(WeightGroup.UNDER_50,15.0);
+        dosageTable.get(DoseType.STANDARD).get("11-12").put(WeightGroup.MEDIUM,20.0);
+        dosageTable.get(DoseType.STANDARD).get("11-12").put(WeightGroup.OVER_75, 30.0);
+
+        dosageTable.get(DoseType.STANDARD).put("13-14", new EnumMap<>(WeightGroup.class));
+        dosageTable.get(DoseType.STANDARD).get("13-14").put(WeightGroup.UNDER_50,12.5);
+        dosageTable.get(DoseType.STANDARD).get("13-14").put(WeightGroup.MEDIUM,15.0);
+        dosageTable.get(DoseType.STANDARD).get("13-14").put(WeightGroup.OVER_75, 20.0);
+
+        dosageTable.get(DoseType.STANDARD).put("15-16", new EnumMap<>(WeightGroup.class));
+        dosageTable.get(DoseType.STANDARD).get("15-16").put(WeightGroup.UNDER_50,10.0);
+        dosageTable.get(DoseType.STANDARD).get("15-16").put(WeightGroup.MEDIUM,10.0);
+        dosageTable.get(DoseType.STANDARD).get("15-16").put(WeightGroup.OVER_75, 15.0);
+
+        dosageTable.get(DoseType.STANDARD).put("17-18", new EnumMap<>(WeightGroup.class));
+        dosageTable.get(DoseType.STANDARD).get("17-18").put(WeightGroup.UNDER_50,10.0);
+        dosageTable.get(DoseType.STANDARD).get("17-18").put(WeightGroup.MEDIUM,10.0);
+        dosageTable.get(DoseType.STANDARD).get("17-18").put(WeightGroup.OVER_75, 15.0);
+
+        dosageTable.get(DoseType.STANDARD).put("19-20", new EnumMap<>(WeightGroup.class));
+        dosageTable.get(DoseType.STANDARD).get("19-20").put(WeightGroup.UNDER_50,7.5);
+        dosageTable.get(DoseType.STANDARD).get("19-20").put(WeightGroup.MEDIUM,7.5);
+        dosageTable.get(DoseType.STANDARD).get("19-20").put(WeightGroup.OVER_75, 10.0);
+
+        dosageTable.get(DoseType.STANDARD).put("21-22", new EnumMap<>(WeightGroup.class));
+        dosageTable.get(DoseType.STANDARD).get("21-22").put(WeightGroup.UNDER_50,7.5);
+        dosageTable.get(DoseType.STANDARD).get("21-22").put(WeightGroup.MEDIUM,7.5);
+        dosageTable.get(DoseType.STANDARD).get("21-22").put(WeightGroup.OVER_75, 7.5);
+
+        dosageTable.get(DoseType.STANDARD).put("23-52", new EnumMap<>(WeightGroup.class));
+        dosageTable.get(DoseType.STANDARD).get("23-52").put(WeightGroup.UNDER_50,5.0);
+        dosageTable.get(DoseType.STANDARD).get("23-52").put(WeightGroup.MEDIUM,5.0);
+        dosageTable.get(DoseType.STANDARD).get("23-52").put(WeightGroup.OVER_75, 5.0);
+    }
+
+    // You can provide a public getter method if needed
+    public static Map<DoseType, Map<String, Map<WeightGroup, Double>>> getDosageTable() {
+        return Collections.unmodifiableMap(dosageTable);
+    }
+
+    public static String printEntireDosageTable(){
+        
+        return dosageTable.toString();
+    }
 
     // Constructor
     public PrednisoneTreatment() {
@@ -77,7 +162,7 @@ public class PrednisoneTreatment extends Treatment{
         double patient_weight = patient.getWeight();
         WeightGroup weightGroup = getWeightGroup(patient_weight);
 
-        return "this patient belongs to " + weightGroup;
+        return printEntireDosageTable();
     }
     
 }

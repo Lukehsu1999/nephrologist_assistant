@@ -36,6 +36,8 @@ public class PrednisoneTreatment extends Treatment{
     // Class attribute: static and final
     // DoseType -> Week -> WeightGroup -> Dose
     private static String standardDosageFilePath = "src/nephrologistapp/treatments/prednisone_data/standard_dosage.csv";
+    
+    // refactor DosageTable to WeightGroup -> Week -> Dose
     private static final Map<String, Map<WeightGroup, Double>> standardDosageTable;
     private static final Map<String, Map<WeightGroup, Double>> reducedDosageTable;
 

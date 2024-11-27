@@ -99,8 +99,17 @@ public class PrednisoneTreatment extends Treatment{
     }
 
     // You can provide a public getter method if needed
-    public static Map<WeightGroup, Map<String, Double>> getDosageTable(Map<WeightGroup, Map<String, Double>> dosageTable) {
+    public static Map<WeightGroup, Map<String, Double>> getEntireDosageTable(Map<WeightGroup, Map<String, Double>> dosageTable) {
         return Collections.unmodifiableMap(dosageTable);
+    }
+
+    public static Map<String,Double> getDosageTableForWeightGroup(WeightGroup weightGroup, Boolean reduced) {
+        if (reduced){
+            return reducedDosageTable.get(weightGroup);
+        }
+        else{
+            return standardDosageTable.get(weightGroup);
+        }
     }
 
     public static String printEntireDosageTable(Map<WeightGroup, Map<String, Double>> dosageTable) {
@@ -113,11 +122,11 @@ public class PrednisoneTreatment extends Treatment{
     }
     
     @Override
-    public String treatPatient(Patient patient) {
+    public String treatPatient(Patient patient, Boolean reduced) {
         double patient_weight = patient.getWeight();
         WeightGroup weightGroup = getWeightGroup(patient_weight);
-
-        return printEntireDosageTable(reducedDosageTable);
+        Map<String, Double> patientDosageTable = getDosageTableForWeightGroup(weightGroup, reduced);
+        return patientDosageTable.toString();
     }
     
 }

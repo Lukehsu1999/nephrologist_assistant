@@ -3,8 +3,8 @@ package nephrologistapp.treatments;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.Collections;
-import java.util.EnumMap;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 import nephrologistapp.patients.Patient;
@@ -53,9 +53,9 @@ public class PrednisoneTreatment extends Treatment{
             // Skip the header line
             reader.readLine();
 
-            standardDosageTable.put(WeightGroup.UNDER_50, new HashMap<String, Double>());
-            standardDosageTable.put(WeightGroup.MEDIUM, new HashMap<String, Double>());
-            standardDosageTable.put(WeightGroup.OVER_75, new HashMap<String, Double>());
+            standardDosageTable.put(WeightGroup.UNDER_50, new LinkedHashMap<String, Double>());
+            standardDosageTable.put(WeightGroup.MEDIUM, new LinkedHashMap<String, Double>());
+            standardDosageTable.put(WeightGroup.OVER_75, new LinkedHashMap<String, Double>());
             
             String line;
             while ((line = reader.readLine()) != null) {
@@ -77,9 +77,9 @@ public class PrednisoneTreatment extends Treatment{
             // Skip the header line
             reader.readLine();
 
-            reducedDosageTable.put(WeightGroup.UNDER_50, new HashMap<String, Double>());
-            reducedDosageTable.put(WeightGroup.MEDIUM, new HashMap<String, Double>());
-            reducedDosageTable.put(WeightGroup.OVER_75, new HashMap<String, Double>());
+            reducedDosageTable.put(WeightGroup.UNDER_50, new LinkedHashMap<String, Double>());
+            reducedDosageTable.put(WeightGroup.MEDIUM, new LinkedHashMap<String, Double>());
+            reducedDosageTable.put(WeightGroup.OVER_75, new LinkedHashMap<String, Double>());
             
             String line;
             while ((line = reader.readLine()) != null) {
@@ -117,7 +117,7 @@ public class PrednisoneTreatment extends Treatment{
         double patient_weight = patient.getWeight();
         WeightGroup weightGroup = getWeightGroup(patient_weight);
 
-        return printEntireDosageTable(standardDosageTable);
+        return printEntireDosageTable(reducedDosageTable);
     }
     
 }

@@ -20,4 +20,9 @@ public class Treatment {
         return "Patient " + patient.getName() + " has been treated with " + treatmentName;
     }
 
+    public String treatPatient(Patient patient, Boolean reduced) {
+        return "Patient " + patient.getName() + " has been treated with " + treatmentName +
+               (reduced ? " (reduced dose)" : "");
+    }
+
 }

@@ -38,7 +38,7 @@ public class PrednisoneTreatment extends Treatment{
     private static String standardDosageFilePath = "src/nephrologistapp/treatments/prednisone_data/standard_dosage.csv";
     private static String reducedDosageFilePath = "src/nephrologistapp/treatments/prednisone_data/reduced_dosage.csv";
     // refactor DosageTable to WeightGroup -> Week -> Dose
-    private static final Map<String, Map<WeightGroup, Double>> standardDosageTable;
+    private static final Map<WeightGroup, Map<String, Double>> standardDosageTable;
     private static final Map<WeightGroup, Map<String, Double>> reducedDosageTable;
 
 
@@ -48,10 +48,14 @@ public class PrednisoneTreatment extends Treatment{
         standardDosageTable = new HashMap<>();
         reducedDosageTable = new HashMap<>();
 
-        // Populate the dosageTable here
+        // Populate the standardDosageTable here
         try (BufferedReader reader = new BufferedReader(new FileReader(standardDosageFilePath))) {
             // Skip the header line
             reader.readLine();
+
+            standardDosageTable.put(WeightGroup.UNDER_50, new HashMap<String, Double>());
+            standardDosageTable.put(WeightGroup.MEDIUM, new HashMap<String, Double>());
+            standardDosageTable.put(WeightGroup.OVER_75, new HashMap<String, Double>());
             
             String line;
             while ((line = reader.readLine()) != null) {
@@ -60,10 +64,9 @@ public class PrednisoneTreatment extends Treatment{
                 double under50Dose = Double.parseDouble(parts[1]);
                 double mediumDose = Double.parseDouble(parts[2]);
                 double over75Dose = Double.parseDouble(parts[3]);
-                standardDosageTable.put(weekString, new EnumMap<>(WeightGroup.class));
-                standardDosageTable.get(weekString).put(WeightGroup.UNDER_50, under50Dose);
-                standardDosageTable.get(weekString).put(WeightGroup.MEDIUM, mediumDose);
-                standardDosageTable.get(weekString).put(WeightGroup.OVER_75, over75Dose);
+                standardDosageTable.get(WeightGroup.UNDER_50).put(weekString, under50Dose);
+                standardDosageTable.get(WeightGroup.MEDIUM).put(weekString, mediumDose);
+                standardDosageTable.get(WeightGroup.OVER_75).put(weekString, over75Dose);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -96,8 +99,8 @@ public class PrednisoneTreatment extends Treatment{
     }
 
     // You can provide a public getter method if needed
-    public static Map<String, Map<WeightGroup, Double>> getStandardDosageTable() {
-        return Collections.unmodifiableMap(standardDosageTable);
+    public static Map<WeightGroup, Map<String, Double>> getDosageTable(Map<WeightGroup, Map<String, Double>> dosageTable) {
+        return Collections.unmodifiableMap(dosageTable);
     }
 
     public static String printEntireDosageTable(Map<WeightGroup, Map<String, Double>> dosageTable) {
@@ -114,7 +117,7 @@ public class PrednisoneTreatment extends Treatment{
         double patient_weight = patient.getWeight();
         WeightGroup weightGroup = getWeightGroup(patient_weight);
 
-        return printEntireDosageTable(reducedDosageTable);
+        return printEntireDosageTable(standardDosageTable);
     }
     
 }

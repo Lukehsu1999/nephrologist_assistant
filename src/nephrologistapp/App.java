@@ -8,7 +8,7 @@ import nephrologistapp.treatments.PrednisoneTreatment;
 
 public class App {
     public static void main(String[] args) throws Exception {
-        Patient patient = new Patient("John Doe", 25, 50.0);
+        Patient patient = new Patient("John Doe", 25, 50.0, 1.2);
         Treatment treatment = new PrednisoneTreatment();
         
         System.out.println(patient.printPatient());

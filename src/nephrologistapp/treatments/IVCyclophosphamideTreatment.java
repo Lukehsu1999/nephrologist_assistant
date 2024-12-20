@@ -15,27 +15,29 @@ public class IVCyclophosphamideTreatment extends Treatment{
         }
         int age = patient.getAge();
         double weight = patient.getWeight();
+        double dosagePerWeight = 0.0;
         if (gfr > 30){
             if (age<60){
-                return "15 mg/kg/day";
+                dosagePerWeight = 15.0;
             }
             else if (age>=60 && age<70){
-                return "12.5 mg/kg/day";
+                dosagePerWeight = 12.5;
             }
             else {
-                return "10 mg/kg/day";
+                dosagePerWeight = 10.0;
             }
         }
         else {
             if (age<60){
-                return "12.5 mg/kg/day";
+                dosagePerWeight = 12.5;
             }
             else if (age>=60 && age<70){
-                return "10 mg/kg/day";
+                dosagePerWeight = 10.0;
             }
             else {
-                return "7.5 mg/kg/day";
+                dosagePerWeight = 7.5;
             }
         }
+        return dosagePerWeight+ " per injection";
     }
 }

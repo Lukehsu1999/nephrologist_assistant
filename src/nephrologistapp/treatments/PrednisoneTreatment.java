@@ -85,6 +85,7 @@ public class PrednisoneTreatment extends Treatment{
             while ((line = reader.readLine()) != null) {
                 String[] parts = line.split(",");
                 String weekString = parts[0];
+                // dosage in mg, taken daily
                 double under50Dose = Double.parseDouble(parts[1]);
                 double mediumDose = Double.parseDouble(parts[2]);
                 double over75Dose = Double.parseDouble(parts[3]);

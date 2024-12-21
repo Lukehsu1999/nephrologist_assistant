@@ -10,7 +10,7 @@ import nephrologistapp.treatments.PrednisoneTreatment;
 
 public class App {
     public static void main(String[] args) throws Exception {
-        Patient patient = new Patient("John Doe", 25, 50.0, 1.2);
+        Patient patient = new Patient("John Doe", 25, 50.0, 40.0); //weigth in kilogram
         Treatment p_treatment = new PrednisoneTreatment();
         Treatment oc_treatment = new OralCyclophosphamideTreatment();
         Treatment ivc_treatment = new IVCyclophosphamideTreatment(); 

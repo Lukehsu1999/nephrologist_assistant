@@ -38,6 +38,6 @@ public class IVCyclophosphamideTreatment extends Treatment{
                 dosagePerWeight = 7.5;
             }
         }
-        return dosagePerWeight+ " per injection";
+        return dosagePerWeight*weight+ " per injection every 2 weeks";
     }
 }
